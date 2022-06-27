@@ -4,7 +4,11 @@ const generateBtn = document.querySelector("#generate");
   generate.addEventListener("click", () => {
     const element = document.querySelector(".password-criteria");
       element.style.visibility ="visible";
-    const length = 
+    const length = +lengthEl.value;
+    const withLowercase = lowercaseEl.value; 
+    const withUppercase = uppercaseEl.value;
+    const withNumber = +numbersEl.value;
+    const withSpecialCharacter = specialCharactersEl.value; 
 });
 
 
