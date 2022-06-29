@@ -1,25 +1,15 @@
 // Assignment Code
 
-const generateBtn = document.querySelector("#generate");
-  generate.addEventListener("click", () => {
-    const element = document.querySelector(".password-criteria");
-      element.style.visibility ="visible";
-    const length = +lengthEl.value;
-    const withLowercase = lowercaseEl.value; 
-    const withUppercase = uppercaseEl.value;
-    const withNumber = +numbersEl.value;
-    const withSpecialCharacter = specialCharactersEl.value; 
-});
+// Declares what each "El" element is based on its ID in the index.html file
+var passwordEl = document.getElementById("password");
+var lengthEl = document.getElementById("length");
+var lowercaseEl = document.getElementById("lowercase");
+var uppercaseEl = document.getElementById("uppercase");
+var numbersEl = document.getElementById("numbers");
+var specialCharactersEl = document.getElementById("special-characters");
 
-
-const passwordEl = document.getElementById("password");
-const lengthEl = document.getElementById("length");
-const lowercaseEl = document.getElementById("lowercase");
-const uppercaseEl = document.getElementById("uppercase");
-const numbersEl = document.getElementById("numbers");
-const specialCharactersEl = document.getElementById("special-characters");
-
-const randomFunc= {
+// This is an object with the properties that are defined by the math functions down below. 
+var retrieveRandomCharacters = {
   lower: getRandomLowercase,
   upper: getRandomUppercase,
   number: getRandomNumber,
@@ -28,46 +18,80 @@ const randomFunc= {
 
 
 
-// Charcode Reference https://net-comber.com/charset.html
+var generateBtn = document.querySelector("#generate");
+generate.addEventListener("click", () => {
+  var length = +lengthEl.value;
+  var withLowercase = lowercaseEl.checked;
+  var withUppercase = uppercaseEl.checked;
+  var withNumber = numbersEl.checked;
+  var withSpecialCharacter = specialCharactersEl.checked;
 
-  function getRandomLowercase (){
-    return String.fromCharCode(Math.floor(Math.random() * 26)+ 97 );
+  // Pulls the values from the different functions
+  passwordEl.innerText = generatePassword(
+    length,
+    withLowercase,
+    withUppercase,
+    withNumber,
+    withSpecialCharacter
+  );
+
+  // Write password to the #password input
+  function generatePassword(length, lower, upper, number, special) {
+    var generatedPassword = "";
+    var characterTypes = lower + upper + number + special;
+    var passwordFormat = [{}];
+    if (characterTypes === 0){
+      return "Dude(tte), you gotta pick some criteria (wo)man.";
+    }
+    if (length = 8){
+      return "Hey man, 8 isn't bad. ";
+
+    }
+    
+     
+    for (var i = 0; i < length; i+=characterTypes) {
+       console.log(i);
+    }
+
   };
+});
 
-  function getRandomUppercase (){
-    return String.fromCharCode(Math.floor(Math.random() * 26)+ 65 );
-  };
-
-  function getRandomNumber (){
-    return (Math.floor(Math.random() * 10));
-  };
-
-  function getRandomSpecialCharacter (){
-    const specialCharacters = "~!@#$%^&*()_-+=|";
-    return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
-  };
-  
-
-
-
+// Displays the criteria
+var displayBtn = document.querySelector("#criteria");
+criteria.addEventListener("click", () => {
+  var element = document.querySelector(".password-criteria");
+  element.style.visibility = "visible";
+});
 
 // Hides the criteria
 var hideBtn = document.querySelector("#hide");
 hide.addEventListener("click", () => {
-  const element = document.querySelector(".password-criteria");
-  element.style.visibility ="hidden";
+  var element = document.querySelector(".password-criteria");
+  element.style.visibility = "hidden";
 
 });
 
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-
+// MATH LAND
+function getRandomLowercase() {
+  // creates an array of lowercase letters
+  var lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz"
+  // returns from the array above a random item in the array. 
+  return lowerCaseLetters[Math.floor(Math.random() * lowerCaseLetters.length)];
 };
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+function getRandomUppercase() {
+  // creates an array of lowercase letters
+  var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  // returns from the array above a random item in the array. 
+  return upperCaseLetters[Math.floor(Math.random() * upperCaseLetters.length)];
+};
+
+function getRandomNumber() {
+  // Generates a random Number from 1-10
+  return (Math.floor(Math.random() * 10));
+};
+
+function getRandomSpecialCharacter() {
+  var specialCharacters = "~!@#$%^&*()_-+=|";
+  return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
+};
