@@ -1,11 +1,17 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 generateBtn.addEventListener("click", function () {
-  var promptName = prompt("Please input your desired password length. Must between 8-128 characters.")
+  var length = prompt("Please input your desired password length. Must between 8-128 characters.")
   });
 
-  if(promptName < 8 && promptName > 128 ){
-    alert("Please enter a value of at least 8 and at most 128.");
+  if(length < 8 || length > 128 ){
+    console.log("bacon");
+  //   alert("Please enter a valid value of at least 8 and at most 128.");
+  // } else {
+  //   var lengthEl = document.createElement(length);
+    
+  } else {
+    console.log("pizza");
   }
 
 
