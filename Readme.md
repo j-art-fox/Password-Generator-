@@ -11,8 +11,8 @@ This project showcases a prompt-based password generator that can be customized 
 * **Application** This project provided the opportunity to experience creating a web application where various elements inside of the HTML and CSS are modified from the Javascript. Additionally, this assignment introduced me to various math functions including math.random and math.floor. It also presented the opportunity to apply what was taught about traversing through the DOM and creating a for loop and using it to generate a value.
 
 ## Preview
-![Preview1](./assets/images/preview1.png)
-![Preview2](./assets/iamges/preview2.png)
+![Preview1](.Password-Generator-/assets/images/preview1.png)
+![Preview2](.Password-Generator-/assets/iamges/preview2.png)
 
 ## URL
 Website: https://j-art-fox.github.io/Password-Generator-/
