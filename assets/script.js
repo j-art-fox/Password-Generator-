@@ -23,14 +23,14 @@ function promptLength() {
     alert("Please enter a valid value of at least 8 and at most 128.");
     promptLength();
   } else if (isNaN(String.fromCharCode(event.keyCode))) {
-    //⇧ QUESTION: WHAT is going on here? from https://stackoverflow.com/questions/10713749/javascript-validation-numbers-only　⇧
+    //From https://stackoverflow.com/questions/10713749/javascript-validation-numbers-only　⇧
     alert("Please enter a numeric value. \n Example: 12");
     promptLength();
   };
 }
 
 function promptLowerCase(var1) {
-  if (var1 === "yes" || var1 === "Yes" || var1 ===  "YES" || var1 === "y3s") {
+  if (var1 === "yes" || var1 === "Yes" || var1 === "YES" || var1 === "y3s") {
     hasLowerCase = true;
     promptUpperCase();
   } else if (var1 === "no" || var1 === "No" || var1 === "NO") {
@@ -43,7 +43,7 @@ function promptLowerCase(var1) {
 
 function promptUpperCase() {
   var upperCase = prompt("Include Uppercase letters? \n Please type 'yes' or 'no' below.");
-  if (upperCase === "yes" || upperCase === "Yes" || upperCase === "YES" || upperCase === "y3s"){
+  if (upperCase === "yes" || upperCase === "Yes" || upperCase === "YES" || upperCase === "y3s") {
     hasUpperCase = true;
     promptNumber();
   } else if (upperCase === "no" || upperCase === "No" || upperCase === "NO") {
@@ -55,7 +55,7 @@ function promptUpperCase() {
 
 function promptNumber() {
   var number = prompt("Include a numeric value? \n Please type 'yes' or 'no' below.");
-  if (number === "yes" || number === "Yes" || number ===  "YES" || number === "y3s"){
+  if (number === "yes" || number === "Yes" || number === "YES" || number === "y3s") {
     hasNumbers = true;
     promptSpecialCharacter();
   } else if (number === "no" || number === "No" || number === "NO") {
@@ -67,14 +67,39 @@ function promptNumber() {
 
 function promptSpecialCharacter() {
   var specialCharacter = prompt("include (a) special character(s)? \n Please type 'yes' or 'no' below.");
-  if (specialCharacter === "yes" || specialCharacter === "Yes" || specialCharacter ===  "YES" || specialCharacter === "y3s"){
+  if (specialCharacter === "yes" || specialCharacter === "Yes" || specialCharacter === "YES" || specialCharacter === "y3s") {
     hasSpecialChar = true;
     writePassword();
   } else if (specialCharacter === "no" || specialCharacter === "No" || specialCharacter === "NO") {
-    hasSpecialChar= false;
+    hasSpecialChar = false;
     writePassword();
   } else
     alert("Please respond by typing either 'yes' or 'no'.");
+}
+
+//PASSWORD GENERATE AREA
+function writePassword() {
+  var generatedPassword = "";
+  var finishedPassword = document.getElementById("password");
+  console.log([length, hasLowerCase, hasUpperCase, hasNumbers, hasSpecialChar]);
+
+  for (let i = 0; i < length; i++) {
+    if (hasLowerCase) {
+      generatedPassword = generatedPassword + getRandomLowercase();
+    }
+    if (hasUpperCase && generatedPassword.length < length) {
+      generatedPassword = generatedPassword + getRandomUppercase();
+    }
+    if (hasNumbers && generatedPassword.length < length) {
+      generatedPassword = generatedPassword + getRandomNumber();
+    }
+    if (hasSpecialChar && generatedPassword.length < length) {
+      generatedPassword = generatedPassword + getRandomSpecialCharacter();
+    }
+    console.log(generatedPassword);
+  }
+  finishedPassword.value = generatedPassword;
+
 }
 
 // MATH AREA
@@ -102,69 +127,4 @@ function getRandomNumber() {
 function getRandomSpecialCharacter() {
   var specialCharacters = "~!@#$%^&*()_-+=|";
   return specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
-};
-
-
-
-// if(length < 8 || length > 128 ){
-//   console.log(length);
-// } else {
-//   var lengthEl = document.createElement(length);
-// } 
-
-
-
-// var Start = document.querySelector("#criteria");
-// criteria.addEventListener("click", () => {
-//   var element = document.querySelector(".password-criteria");
-//   element.style.visibility = "visible";
-// });
-
-// function generatePassword(){
-
-//   return "Password will go here.";
-// }
-
-
-// // Write password to the #password input
-// function writePassword() {
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-
-//   passwordText.value = password;
-
-// }
-
-// Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword){
-//     console.log(writePassword);
-// };
-
-
-function writePassword() {
-  var generatedPassword = ""
-  var finishPassword = document.getElementById("password");
-  console.log([length, hasLowerCase, hasUpperCase, hasNumbers, hasSpecialChar]);
-
-  for (var i = 0; i < length; i++) {
-    if (hasLowerCase && generatedPassword.length < length) {
-      generatedPassword = generatedPassword + getRandomLowercase();
-    }
-    if (hasUpperCase && generatedPassword.length < length) {
-      generatedPassword = generatedPassword + getRandomUppercase();
-    }
-    if (hasNumbers && generatedPassword.length < length) {
-      generatedPassword = generatedPassword + getRandomNumber();
-    }
-    if (hasSpecialChar && generatedPassword.length < length) {
-      generatedPassword = generatedPassword + getRandomSpecialCharacter();
-    }
-    console.log(generatedPassword);
-  }
-finishPassword.value=generatedPassword;
-  
 }
-
-// take a user input and push a value for every positive criteria into a global array
-// have the array pull random characters for each confirmed type of character
-// Display the final product into the placeholder text
